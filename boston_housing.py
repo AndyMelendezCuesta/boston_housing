@@ -1,3 +1,5 @@
+#For converting the .ipynb file to .pdf: ipython nbconvert --to pdf boston_housing.ipynb
+
 """Load the Boston dataset and examine its target (label) distribution."""
 
 # Load libraries
@@ -111,10 +113,10 @@ def learning_curve(depth, X_train, y_train, X_test, y_test):
         train_err[i] = performance_metric(y_train[:s], regressor.predict(X_train[:s]))
         test_err[i] = performance_metric(y_test, regressor.predict(X_test))
 
-    #pl.figure()
-    #pl.plot(y_train - regressor.predict(X_train))
-    #pl.legend()
-    #pl.savefig("residual_plot.png")
+    pl.figure()
+    pl.plot(y_train - regressor.predict(X_train))
+    pl.legend()
+    pl.savefig("residual_plot.png")
     
     # Plot learning curve graph
     learning_curve_graph(sizes, train_err, test_err, depth)
@@ -250,6 +252,13 @@ def main():
     # Training/Test dataset split
     X_train, y_train, X_test, y_test = split_data(city_data)
 
+    #Chosen Features
+    #choosen_features = ['RAD', 'TAX', 'LSTAT']
+    #features = city_data.feature_names.tolist()
+    #for feature in choosen_features:
+    #    index = features.index(feature)
+    #    print CLIENT_FEATURES[0][index]
+
     # Learning Curve Graphs
     max_depths = [1,2,3,4,5,6,7,8,9,10]
     for max_depth in max_depths:
@@ -268,4 +277,42 @@ if __name__ == "__main__":
     # suppresses deprecation warning 
     warnings.filterwarnings('ignore')
     main()
+
+#------------ START -------------
+# No. of houses: 506
+# No. of housing features: 13
+# Minimum price: 5.0
+# Maximum price: 50.0
+# Mean house price: 22.5328063241
+# Median house price: 21.2
+# Standard dev house price: 9.18801154528
+# Decision Tree with Max Depth: 
+# 1
+# Decision Tree with Max Depth: 
+# 2
+# Decision Tree with Max Depth: 
+# 3
+# Decision Tree with Max Depth: 
+# 4
+# Decision Tree with Max Depth: 
+# 5
+# Decision Tree with Max Depth: 
+# 6
+# Decision Tree with Max Depth: 
+# 7
+# Decision Tree with Max Depth: 
+# 8
+# Decision Tree with Max Depth: 
+# 9
+# Decision Tree with Max Depth: 
+# 10
+# Model Complexity: 
+# Final Model: 
+# {'max_depth': 4}
+# House: [11.95, 0.0, 18.1, 0, 0.659, 5.609, 90.0, 1.385, 24, 680.0, 20.2, 332.09, 12.13]
+# Prediction: [ 21.62974359]
+# Nearest neighbors average: 21.52
+# Finished
+#------------ END ----------------
+
     
